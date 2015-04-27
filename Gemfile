@@ -23,9 +23,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -38,6 +35,12 @@ gem 'figaro'
 # Use to annotate files
 gem 'annotate'
 
+# Use to manage users
+gem 'devise'
+
+# Use to manage authorization
+gem 'cancancan', '~> 1.10'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -45,6 +48,8 @@ gem 'annotate'
 # gem 'debugger', group: [:development, :test]
 
 group :development do
+	# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+	gem 'spring'
   # Better errors for development
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -54,4 +59,8 @@ group :development do
 
   # Use to preview mail in the browser instead of sending
   gem 'letter_opener'
+
+  # LiveReload
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.4', require: false
 end
