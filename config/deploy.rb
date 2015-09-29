@@ -2,7 +2,8 @@ server '104.236.232.62', roles: %w{app web}
 server '45.55.38.46', roles: %w{app web}
 server '159.203.64.133', roles: %w{db}
 
-set :repo_url,        'git@github.com:AntoineWattier/testapp_rails.git'
+set :repo_url,        'git@github.com:AntoineWattier/rails-4-skeleton.git'
+set :branch,          'develop'
 set :application,     'testapp'
 set :user,            'deployer'
 set :puma_threads,    [4, 16]
