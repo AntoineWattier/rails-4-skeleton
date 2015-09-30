@@ -1,6 +1,5 @@
-server '104.236.232.62', roles: %w{app web}
-server '45.55.38.46', roles: %w{app web}
-server '159.203.64.133', roles: %w{db}
+server '104.236.232.62', roles: %w{app web db} # app1
+# server '45.55.38.46', roles: %w{app web} # app2
 
 set :repo_url,        'git@github.com:AntoineWattier/rails-4-skeleton.git'
 set :branch,          'develop'
@@ -23,7 +22,7 @@ set :puma_error_log,  "#{release_path}/log/puma.access.log"
 set :ssh_options,     { forward_agent: true, user: fetch(:user), keys: %w(/Users/devcourrier/.ssh/id_rsa)}
 set :puma_preload_app, true
 set :puma_worker_timeout, nil
-set :puma_init_active_record, false  # Change to true if using ActiveRecord
+set :puma_init_active_record, true  # Change to true if using ActiveRecord
 
 ## Defaults:
 # set :scm,           :git
@@ -33,7 +32,7 @@ set :puma_init_active_record, false  # Change to true if using ActiveRecord
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-# set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
@@ -58,6 +57,11 @@ namespace :deploy do
         exit
       end
     end
+  end
+
+  desc "reload the database with seed data"
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{fetch(:stage)}"
   end
 
   desc 'Initial Deploy'
