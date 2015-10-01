@@ -1,4 +1,7 @@
 <h1>Tasks#index</h1>
+<% require 'socket' %>
+<%= Socket.ip_address_list.detect(&:ipv4_private?).try(:ip_address) %>
+<% @tasks.each do |t| %>
 <% @tasks.each do |t| %>
 <p><%= t.title %></p>
 <% end %>
