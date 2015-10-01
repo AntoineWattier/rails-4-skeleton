@@ -1,5 +1,5 @@
 server '104.236.232.62', roles: %w{app web db} # app1
-# server '45.55.38.46', roles: %w{app web} # app2
+server '45.55.38.46', roles: %w{app web} # app2
 
 set :repo_url,        'git@github.com:AntoineWattier/rails-4-skeleton.git'
 set :branch,          'develop'
@@ -32,7 +32,7 @@ set :puma_init_active_record, true  # Change to true if using ActiveRecord
 # set :keep_releases, 5
 
 ## Linked Files & Directories (Default None):
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/secrets.yml}
 # set :linked_dirs,  %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 namespace :puma do
